@@ -1,0 +1,135 @@
+********************************************
+* This is file for "Do Children Born to Victims of Domestic Abuse Fare Worse?"
+* This is the stata code used to determine relationship between children's exposure to IPV and their nutritional outcomes 
+* This file has to be used post dataprep
+
+
+* OLS/IV Regression Specification
+* Dataset used NFHS-5
+
+***************************************************
+* MAIN VARIABLES:
+ * Explanatory variables: Tot_PV, Tot_SV, Tot_EV, Tot_DV, PV_Index, SV_Index, EV_Index, DV_Index
+ * Outcome varibales :  stunted, severely_stunted, wasted, severely_wasted
+ 
+************************************************************************************************************************************
+
+///OLS
+
+eststo clear
+eststo model12: quietly regress stunted Tot_PV $predictors_3, robust
+eststo model13: quietly regress severely_stunted Tot_PV $predictors_3, robust
+eststo model14: quietly regress wasted Tot_PV $predictors_3, robust
+eststo model15: quietly regress severely_wasted Tot_PV $predictors_3, robust
+esttab, r2 ar2 se starlevels(* 0.10 ** 0.05 *** 0.01) keep(Tot_PV) label
+
+eststo clear
+eststo model12: quietly regress stunted Tot_SV $predictors_3, robust
+eststo model13: quietly regress severely_stunted Tot_SV $predictors_3, robust
+eststo model14: quietly regress wasted Tot_SV $predictors_3, robust
+eststo model15: quietly regress severely_wasted Tot_SV $predictors_3, robust
+esttab, r2 ar2 se starlevels(* 0.10 ** 0.05 *** 0.01) keep(Tot_SV) label
+
+eststo clear
+eststo model12: quietly regress stunted Tot_EV $predictors_3, robust
+eststo model13: quietly regress severely_stunted Tot_EV $predictors_3, robust
+eststo model14: quietly regress wasted Tot_EV $predictors_3, robust
+eststo model15: quietly regress severely_wasted Tot_EV $predictors_3, robust
+esttab, r2 ar2 se starlevels(* 0.10 ** 0.05 *** 0.01) keep(Tot_EV) label
+
+eststo clear
+eststo model12: quietly regress stunted Tot_DV $predictors_3, robust
+eststo model13: quietly regress severely_stunted Tot_DV $predictors_3, robust
+eststo model14: quietly regress wasted Tot_DV $predictors_3, robust
+eststo model15: quietly regress severely_wasted Tot_DV $predictors_3, robust
+esttab, r2 ar2 se starlevels(* 0.10 ** 0.05 *** 0.01) keep(Tot_DV) label
+
+eststo clear
+eststo model12: quietly regress stunted PV_Index $predictors_3, robust
+eststo model13: quietly regress severely_stunted PV_Index $predictors_3, robust
+eststo model14: quietly regress wasted PV_Index $predictors_3, robust
+eststo model15: quietly regress severely_wasted PV_Index $predictors_3, robust
+esttab, r2 ar2 se starlevels(* 0.10 ** 0.05 *** 0.01) keep(PV_Index) label
+
+eststo clear
+eststo model12: quietly regress stunted SV_Index $predictors_3, robust
+eststo model13: quietly regress severely_stunted SV_Index $predictors_3, robust
+eststo model14: quietly regress wasted SV_Index $predictors_3, robust
+eststo model15: quietly regress severely_wasted SV_Index $predictors_3, robust
+esttab, r2 ar2 se starlevels(* 0.10 ** 0.05 *** 0.01) keep(SV_Index) label
+
+eststo clear
+eststo model12: quietly regress stunted EV_Index $predictors_3, robust
+eststo model13: quietly regress severely_stunted EV_Index $predictors_3, robust
+eststo model14: quietly regress wasted EV_Index $predictors_3, robust
+eststo model15: quietly regress severely_wasted EV_Index $predictors_3, robust
+esttab, r2 ar2 se starlevels(* 0.10 ** 0.05 *** 0.01) keep(EV_Index) label
+
+eststo clear
+eststo model12: quietly regress stunted DV_Index $predictors_3, robust
+eststo model13: quietly regress severely_stunted DV_Index $predictors_3, robust
+eststo model14: quietly regress wasted DV_Index $predictors_3, robust
+eststo model15: quietly regress severely_wasted DV_Index $predictors_3, robust
+esttab, r2 ar2 se starlevels(* 0.10 ** 0.05 *** 0.01) keep(DV_Index) label
+
+
+///IV (codes used for first-stage results are missing and will be updated soon) 
+
+eststo clear
+eststo model12: quietly ivreg2 stunted (Tot_PV=d121) $predictors_3, robust 
+eststo model13: quietly ivreg2 severely_stunted (Tot_PV=d121) $predictors_3, robust
+eststo model14: quietly ivreg2 wasted (Tot_PV=d121) $predictors_3, robust
+eststo model15: quietly ivreg2 severely_wasted (Tot_PV=d121) $predictors_3, robust
+esttab, r2 ar2 se starlevels(* 0.10 ** 0.05 *** 0.01) keep(Tot_PV) label
+
+eststo clear
+eststo model12: quietly ivreg2 stunted (Tot_SV=d121) $predictors_3, robust
+eststo model13: quietly ivreg2 severely_stunted (Tot_SV=d121) $predictors_3, robust
+eststo model14: quietly ivreg2 wasted (Tot_SV=d121) $predictors_3, robust
+eststo model15: quietly ivreg2 severely_wasted (Tot_SV=d121) $predictors_3, robust
+esttab, r2 ar2 se starlevels(* 0.10 ** 0.05 *** 0.01) keep(Tot_SV) label
+
+eststo clear
+eststo model12: quietly ivreg2 stunted (Tot_EV=d121) $predictors_3, robust
+eststo model13: quietly ivreg2 severely_stunted (Tot_EV=d121) $predictors_3, robust
+eststo model14: quietly ivreg2 wasted (Tot_EV=d121) $predictors_3, robust
+eststo model15: quietly ivreg2 severely_wasted (Tot_EV=d121) $predictors_3, robust
+esttab, r2 ar2 se starlevels(* 0.10 ** 0.05 *** 0.01) keep(Tot_EV) label
+
+
+eststo clear
+eststo model12: quietly ivreg2 stunted (Tot_DV=d121) $predictors_3, robust
+eststo model13: quietly ivreg2 severely_stunted (Tot_DV=d121) $predictors_3, robust
+eststo model14: quietly ivreg2 wasted (Tot_DV=d121) $predictors_3, robust
+eststo model15: quietly ivreg2 severely_wasted (Tot_DV=d121) $predictors_3, robust
+esttab, r2 ar2 se starlevels(* 0.10 ** 0.05 *** 0.01) keep(Tot_DV) label
+
+
+eststo clear
+eststo model12: quietly ivreg2 stunted (PV_Index=d121) $predictors_3, robust
+eststo model13: quietly ivreg2 severely_stunted (PV_Index=d121) $predictors_3, robust
+eststo model14: quietly ivreg2 wasted (PV_Index=d121) $predictors_3, robust
+eststo model15: quietly ivreg2 severely_wasted (PV_Index=d121) $predictors_3, robust
+esttab, r2 ar2 se starlevels(* 0.10 ** 0.05 *** 0.01) keep(PV_Index) label
+
+eststo clear
+eststo model12: quietly ivreg2 stunted (SV_Index=d121) $predictors_3, robust
+eststo model13: quietly ivreg2 severely_stunted (SV_Index=d121) $predictors_3, robust
+eststo model14: quietly ivreg2 wasted (SV_Index=d121) $predictors_3, robust
+eststo model15: quietly ivreg2 severely_wasted (SV_Index=d121) $predictors_3, robust
+esttab, r2 ar2 se starlevels(* 0.10 ** 0.05 *** 0.01) keep(SV_Index) label
+
+eststo clear
+eststo model12: quietly ivreg2 stunted (EV_Index=d121) $predictors_3, robust
+eststo model13: quietly ivreg2 severely_stunted (EV_Index=d121) $predictors_3, robust
+eststo model14: quietly ivreg2 wasted (EV_Index=d121) $predictors_3, robust
+eststo model15: quietly ivreg2 severely_wasted (EV_Index=d121) $predictors_3, robust
+esttab, r2 ar2 se starlevels(* 0.10 ** 0.05 *** 0.01) keep(EV) label
+
+eststo clear
+eststo model12: quietly ivreg2 stunted (DV_Index=d121) $predictors_3, robust
+eststo model13: quietly ivreg2 severely_stunted (DV_Index=d121) $predictors_3, robust
+eststo model14: quietly ivreg2 wasted (DV_Index=d121) $predictors_3, robust
+eststo model15: quietly ivreg2 severely_wasted (DV_Index=d121) $predictors_3, robust
+esttab, r2 ar2 se starlevels(* 0.10 ** 0.05 *** 0.01) keep(DV_Index) label
+
