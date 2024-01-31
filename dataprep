@@ -1,9 +1,9 @@
 ********************************************
 * This is file for "Do Children Born to Victims of Domestic Abuse Fare Worse?"
-* This is the do file used to determine relationship between children's exposure to IPV and their nutritional outcomes 
+* This is the stata code used to determine relationship between children's exposure to IPV and their nutritional outcomes 
 
 
-* DATA cleaning + Variable creations
+* DATA cleaning + Variable creations 
 * Dataset used NFHS-5
 
 ***************************************************
